@@ -15,7 +15,7 @@ class Home extends Component<IWithAppState> {
       <div>
         <h2>
           Welcome, <br />
-          {this.props.appState.user.username}
+          {this.props.appState.session.username}
         </h2>
         <DisplaySportscard />
       </div>

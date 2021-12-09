@@ -13,13 +13,13 @@ import Home from "./Components/Home";
 import { UserRoles } from "./constants";
 import Auth from "./Site/Auth";
 import AuthContainer from "./Site/AuthContainer";
-
-//import Login from "./Components/Login";
-//import Register from "./Components/Register";
 import SportscardCreate from "./Components/SportscardCreate";
+import SportscardUpdate from "./Components/SportscardUpdate";
+import DisplayUsers from "./Components/DisplayUsers";
 
 const defaultState = Object.freeze({
-  user: rehydrateSession(),
+  session: rehydrateSession(),
+  users: [],
   sportsCards: [],
 });
 
@@ -51,21 +51,19 @@ class App extends React.Component<{}, IFullAppState> {
               }
             />
             <Route
-              path="/sports-cards/new"
+              path="/sportscard/new"
               element={
                 <AuthContainer>
                   <SportscardCreate />
                 </AuthContainer>
               }
             />
+
             <Route
               path="/admin"
               element={
                 <AuthContainer requiredRole={UserRoles.Admin}>
-                  {/* 
-                  TODO
-                  <Admin />
-                  */}
+                  <DisplayUsers />
                 </AuthContainer>
               }
             />

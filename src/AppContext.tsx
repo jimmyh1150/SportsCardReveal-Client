@@ -28,11 +28,15 @@ export interface User {
   role: string;
   createdAt: string;
   updatedAt: string;
+}
+interface ISession extends User {
   sessionToken: string;
 }
 
 export interface IAppState {
-  user: Partial<User>;
+  session: Partial<ISession>;
+  users: User[];
+  //sportCardComments: ISportCardComment[]
   sportsCards: ISportsCard[];
 }
 export interface IFullAppState extends IAppState {
@@ -65,8 +69,10 @@ export const addSportsCards = (
 };
 
 export const AppState = React.createContext<IFullAppState>({
-  user: {},
+  session: {},
+  users: [],
   sportsCards: [],
+  //sportCardComments: [],
   setAppState: () => null,
 });
 

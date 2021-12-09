@@ -1,13 +1,8 @@
 import React, { Component } from "react";
 //import { Table, Button } from "reactstrap";
 import { API_SERVER } from "../constants";
-import {
-  addSportsCards,
-  //addSportsCards,
-  ISportsCard,
-  IWithAppState,
-  withAppState,
-} from "../AppContext";
+import { ISportsCard, IWithAppState, withAppState } from "../AppContext";
+import EditSportsCardModal from "./SportscardUpdate";
 
 class DisplaySportscard extends Component<IWithAppState> {
   componentDidMount() {
@@ -18,7 +13,7 @@ class DisplaySportscard extends Component<IWithAppState> {
     fetch(url, {
       headers: new Headers({
         "Content-Type": "application/json",
-        Authorization: `Bearer ${this.props.appState.user.sessionToken}`,
+        Authorization: `Bearer ${this.props.appState.session.sessionToken}`,
       }),
     })
       .then((res) => res.json())
@@ -50,9 +45,9 @@ class DisplaySportscard extends Component<IWithAppState> {
           {this.props.appState.sportsCards.map((card) => (
             <SportsCardRow
               key={card.id}
-              sessionToken={this.props.appState.user.sessionToken}
+              sessionToken={this.props.appState.session.sessionToken}
               refetch={this.loadMyCards}
-              {...card}
+              sportsCard={card}
             />
           ))}
         </tbody>
@@ -63,10 +58,12 @@ class DisplaySportscard extends Component<IWithAppState> {
 interface ISportsCardRow {
   sessionToken?: string;
   refetch: () => void;
+  sportsCard: ISportsCard;
 }
-class SportsCardRow extends Component<ISportsCard & ISportsCardRow> {
+class SportsCardRow extends Component<ISportsCardRow, { isEditing: boolean }> {
+  state = { isEditing: false };
   handleDelete = () => {
-    const url = `${API_SERVER}/Sportscard/delete/${this.props.id}`;
+    const url = `${API_SERVER}/Sportscard/delete/${this.props.sportsCard.id}`;
     fetch(url, {
       method: "DELETE",
       headers: new Headers({
@@ -84,42 +81,55 @@ class SportsCardRow extends Component<ISportsCard & ISportsCardRow> {
         console.log(error);
       });
   };
-  handleUpdate = () => {
-    const url = `${API_SERVER}/Sportscard/update/${this.props.id}`;
-    fetch(url, {
-      method: "PUT",
-      headers: new Headers({
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.props.sessionToken}`,
-      }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw response.json();
-        }
-        this.props.refetch();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  handleToggleEdit = () => {
+    this.setState({ isEditing: !this.state.isEditing });
   };
+  //   handleUpdate = () => {
+  //     const url = `${API_SERVER}/Sportscard/update/${this.props.id}`;
+  //     fetch(url, {
+  //       method: "PUT",
+  //       headers: new Headers({
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${this.props.sessionToken}`,
+  //       }),
+  //     })
+  //       .then((response) => {
+  //         if (!response.ok) {
+  //           throw response.json();
+  //         }
+  //         this.props.refetch();
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  //   };
   render() {
+    const { sportsCard } = this.props;
     return (
-      <tr>
-        <td>{this.props.playerFirstName}</td>
-        <td>{this.props.playerLastName}</td>
-        <td>{this.props.playerTeamCity}</td>
-        <td>{this.props.playerTeamName}</td>
-        <td>{this.props.playerSport}</td>
-        <td>{this.props.cardBrand}</td>
-        <td>{this.props.cardYear}</td>
-        <td>{this.props.cardNumber}</td>
-        <td>{this.props.cardDescription}</td>
-        <td>
-          <button onClick={this.handleUpdate}>Update</button>
-          <button onClick={this.handleDelete}>Delete</button>
-        </td>
-      </tr>
+      <>
+        {this.state.isEditing && (
+          <EditSportsCardModal
+            sportsCard={this.props.sportsCard}
+            onClose={this.handleToggleEdit}
+            refetch={this.props.refetch}
+          />
+        )}
+        <tr>
+          <td>{sportsCard.playerFirstName}</td>
+          <td>{sportsCard.playerLastName}</td>
+          <td>{sportsCard.playerTeamCity}</td>
+          <td>{sportsCard.playerTeamName}</td>
+          <td>{sportsCard.playerSport}</td>
+          <td>{sportsCard.cardBrand}</td>
+          <td>{sportsCard.cardYear}</td>
+          <td>{sportsCard.cardNumber}</td>
+          <td>{sportsCard.cardDescription}</td>
+          <td>
+            <button onClick={this.handleToggleEdit}>Edit</button>
+            <button onClick={this.handleDelete}>Delete</button>
+          </td>
+        </tr>
+      </>
     );
   }
 }
