@@ -1,0 +1,45 @@
+#app-main {
+  display: grid;
+  grid-template-rows: 60px 1fr;
+}
+#app-header {
+  background-color: black;
+}
+#app-content {
+  background-color: gray;
+}
+#login-page {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+.header-navbar {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
