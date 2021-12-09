@@ -16,6 +16,7 @@ import AuthContainer from "./Site/AuthContainer";
 import SportscardCreate from "./Components/SportscardCreate";
 import SportscardUpdate from "./Components/SportscardUpdate";
 import DisplayUsers from "./Components/DisplayUsers";
+import CommentCreate from "./Components/CommentCreate";
 
 const defaultState = Object.freeze({
   session: rehydrateSession(),
@@ -58,6 +59,14 @@ class App extends React.Component<{}, IFullAppState> {
                 </AuthContainer>
               }
             />
+            {/* <Route
+              path="/sportscard/comment"
+              element={
+                <AuthContainer>
+                  <CommentCreate />
+                </AuthContainer>
+              }
+            /> */}
 
             <Route
               path="/admin"
@@ -74,26 +83,5 @@ class App extends React.Component<{}, IFullAppState> {
     );
   }
 }
-
-// function App() {
-//   return (
-//     <BrowserRouter>
-//       <div className="App">
-//         <Nav />
-//         <Auth />
-//         {/* <SportscardCreate />
-//         <div className="auth-wrapper">
-//           <div className="auth-inner">
-//             <Routes>
-//               <Route path="/home" element={<Home />} />
-//               {/* <Route path="/login" element={<Login />} /> */}
-//               {/* <Route path="/register" element={<Register />} /> */}
-//             </Routes>
-//           </div>
-//         </div>
-//       </div>
-//     </BrowserRouter>
-//   );
-// }
 
 export default App;

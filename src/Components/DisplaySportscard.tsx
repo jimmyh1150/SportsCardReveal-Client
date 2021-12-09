@@ -2,7 +2,8 @@ import React, { Component } from "react";
 //import { Table, Button } from "reactstrap";
 import { API_SERVER } from "../constants";
 import { ISportsCard, IWithAppState, withAppState } from "../AppContext";
-import EditSportsCardModal from "./SportscardUpdate";
+import SportscardUpdate from "./SportscardUpdate";
+import CommentCreate from "./CommentCreate";
 
 class DisplaySportscard extends Component<IWithAppState> {
   componentDidMount() {
@@ -60,8 +61,11 @@ interface ISportsCardRow {
   refetch: () => void;
   sportsCard: ISportsCard;
 }
-class SportsCardRow extends Component<ISportsCardRow, { isEditing: boolean }> {
-  state = { isEditing: false };
+class SportsCardRow extends Component<
+  ISportsCardRow,
+  { isEditing: boolean; isCommenting: boolean }
+> {
+  state = { isEditing: false, isCommenting: false };
   handleDelete = () => {
     const url = `${API_SERVER}/Sportscard/delete/${this.props.sportsCard.id}`;
     fetch(url, {
@@ -81,39 +85,37 @@ class SportsCardRow extends Component<ISportsCardRow, { isEditing: boolean }> {
         console.log(error);
       });
   };
+
   handleToggleEdit = () => {
     this.setState({ isEditing: !this.state.isEditing });
   };
-  //   handleUpdate = () => {
-  //     const url = `${API_SERVER}/Sportscard/update/${this.props.id}`;
-  //     fetch(url, {
-  //       method: "PUT",
-  //       headers: new Headers({
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${this.props.sessionToken}`,
-  //       }),
-  //     })
-  //       .then((response) => {
-  //         if (!response.ok) {
-  //           throw response.json();
-  //         }
-  //         this.props.refetch();
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   };
+
+  handleCommentCreate = () => {
+    this.setState({ isCommenting: !this.state.isCommenting });
+  };
+
   render() {
     const { sportsCard } = this.props;
+
     return (
       <>
         {this.state.isEditing && (
-          <EditSportsCardModal
+          <SportscardUpdate
             sportsCard={this.props.sportsCard}
             onClose={this.handleToggleEdit}
             refetch={this.props.refetch}
           />
         )}
+
+        {this.state.isCommenting && (
+          <CommentCreate
+            sportscardId={this.props.sportsCard.id}
+            onClose={this.handleCommentCreate}
+            refetch={this.props.refetch}
+            sessionToken={this.props.sessionToken}
+          />
+        )}
+
         <tr>
           <td>{sportsCard.playerFirstName}</td>
           <td>{sportsCard.playerLastName}</td>
@@ -125,6 +127,7 @@ class SportsCardRow extends Component<ISportsCardRow, { isEditing: boolean }> {
           <td>{sportsCard.cardNumber}</td>
           <td>{sportsCard.cardDescription}</td>
           <td>
+            <button onClick={this.handleCommentCreate}>Comment</button>
             <button onClick={this.handleToggleEdit}>Edit</button>
             <button onClick={this.handleDelete}>Delete</button>
           </td>

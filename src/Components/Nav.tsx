@@ -26,7 +26,7 @@ class Nav extends React.Component<IWithAppState> {
           </DropdownToggle>
           <DropdownMenu>
             {/* temporary location for add/create sports card link */}
-            <Link to="/sportscard/new">Add Card</Link>
+            {/* <Link to="/sportscard/new">Add Card</Link> */}
             {/* <Link to="/sports-cards/edit">Update Card</Link> */}
             {session?.role === UserRoles.Admin && (
               <Link to="/admin">

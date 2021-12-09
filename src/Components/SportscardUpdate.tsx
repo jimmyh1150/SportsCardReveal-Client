@@ -10,7 +10,6 @@ import {
   ModalBody,
 } from "reactstrap";
 import {
-  addSportsCards,
   ISportsCard,
   IWithAppState,
   IWithNavigation,
@@ -23,7 +22,7 @@ interface Props extends IWithAppState, IWithNavigation {
   refetch: () => void;
   sportsCard: ISportsCard;
 }
-class EditSportsCardModal extends Component<Props, Omit<ISportsCard, "id">> {
+class SportscardUpdate extends Component<Props, ISportsCard> {
   constructor(props: Props) {
     super(props);
     this.state = { ...props.sportsCard };
@@ -31,7 +30,8 @@ class EditSportsCardModal extends Component<Props, Omit<ISportsCard, "id">> {
 
   updateSportscard = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    fetch(`${API_SERVER}/Sportscard/update}`, {
+    console.log(this.props);
+    fetch(`${API_SERVER}/Sportscard/update/${this.props.sportsCard.id}`, {
       method: "PUT",
 
       body: JSON.stringify({
@@ -46,6 +46,7 @@ class EditSportsCardModal extends Component<Props, Omit<ISportsCard, "id">> {
         if (!response.ok) {
           throw response.json();
         }
+        console.log(response.json());
         this.props.refetch();
       })
       .catch((err) => console.log(err));
@@ -65,12 +66,11 @@ class EditSportsCardModal extends Component<Props, Omit<ISportsCard, "id">> {
         <ModalHeader
           style={{ backgroundColor: "lightgray", justifyContent: "center" }}
         >
-          New Sports Card
+          Edit Sportscard
         </ModalHeader>
         <ModalBody style={{ backgroundColor: "lightgray" }}>
           <Form>
             <FormGroup>
-              <h3>New Sports Entry</h3>
               <Label htmlFor="playerFirstName">First Name</Label>
               <Input
                 placeholder="First Name"
@@ -204,4 +204,4 @@ class EditSportsCardModal extends Component<Props, Omit<ISportsCard, "id">> {
   }
 }
 
-export default withNavigation(withAppState(EditSportsCardModal));
+export default withNavigation(withAppState(SportscardUpdate));

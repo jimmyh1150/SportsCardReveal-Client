@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Button } from "reactstrap";
 import {
   //addSportsCards,
   ISportsCard,
@@ -17,7 +18,15 @@ class Home extends Component<IWithAppState> {
           Welcome, <br />
           {this.props.appState.session.username}
         </h2>
-        <DisplaySportscard />
+        {/* <Link className="navbar-brand" to={"/sportscard/new"}>
+          Add Card
+        </Link> */}
+        <Button variant="success" href="/sportscard/new">
+          Add Card
+        </Button>
+        <div>
+          <DisplaySportscard />
+        </div>
       </div>
     );
   }

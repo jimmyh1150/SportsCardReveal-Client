@@ -20,6 +20,12 @@ export interface ISportsCard {
   cardDescription: string;
 }
 
+export interface ISportsCardComment {
+  id: number;
+  content: string;
+  createdAt: string;
+}
+
 export interface User {
   id: number;
   email: string;
@@ -36,8 +42,8 @@ interface ISession extends User {
 export interface IAppState {
   session: Partial<ISession>;
   users: User[];
-  //sportCardComments: ISportCardComment[]
   sportsCards: ISportsCard[];
+  //sportCardComments: ISportsCardComment[];
 }
 export interface IFullAppState extends IAppState {
   setAppState: (newValues: Partial<IAppState>) => null;
@@ -55,6 +61,17 @@ export const rehydrateSession = () => {
   } catch {
     return {};
   }
+};
+
+export const addComments = (
+  currentComments: ISportsCardComment[],
+  newComments: ISportsCardComment[] | ISportsCardComment
+) => {
+  const addedComments: ISportsCardComment[] = [];
+  return addedComments.concat(
+    currentComments,
+    Array.isArray(newComments) ? newComments : [newComments]
+  );
 };
 
 export const addSportsCards = (
