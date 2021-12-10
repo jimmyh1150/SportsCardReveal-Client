@@ -1,0 +1,17 @@
+.admin{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.admin-menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table{
+    height: 50vh;
+    width: 100vw;
+    
+}

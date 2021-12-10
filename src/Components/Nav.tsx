@@ -11,10 +11,10 @@ import { UserRoles } from "../constants";
 
 class Nav extends React.Component<IWithAppState> {
   handleLogout = () => {
-    this.props.setAppState({ user: {}, sportsCards: [] });
+    this.props.setAppState({ session: {}, sportsCards: [], users: [] });
   };
   render() {
-    const { user } = this.props.appState;
+    const { session } = this.props.appState;
     return (
       <nav className="header-navbar">
         <Link className="navbar-brand" to={"/home"}>
@@ -26,8 +26,9 @@ class Nav extends React.Component<IWithAppState> {
           </DropdownToggle>
           <DropdownMenu>
             {/* temporary location for add/create sports card link */}
-            <Link to="/sports-cards/new">Add Sports Card</Link>
-            {user?.role === UserRoles.Admin && (
+            {/* <Link to="/sportscard/new">Add Card</Link> */}
+            {/* <Link to="/sports-cards/edit">Update Card</Link> */}
+            {session?.role === UserRoles.Admin && (
               <Link to="/admin">
                 <DropdownItem>Admin Settings</DropdownItem>
               </Link>
@@ -38,26 +39,26 @@ class Nav extends React.Component<IWithAppState> {
           </DropdownMenu>
         </UncontrolledDropdown>
         {/* <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div className="navbar-nav">
-              <Link to={"/"} className="nav-link active" aria-current="page">
-                Sportscard Reveal
-              </Link>
-              <Link to={"/login"} className="nav-link">
-                Login
-              </Link>
-            </div>
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button> */}
+        {/* <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav">
+            <Link to={"/"} className="nav-link active" aria-current="page">
+              Sportscard Reveal
+            </Link>
+            <Link to={"/login"} className="nav-link">
+              Login
+            </Link>
           </div> */}
+        {/* </div> */}
       </nav>
     );
   }

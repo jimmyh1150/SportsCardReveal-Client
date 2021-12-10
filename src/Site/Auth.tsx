@@ -99,7 +99,7 @@ class Auth extends Component<Props, State> {
     return { isValid, message };
   };
 
-  handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { isValid, message } = this.validate();
     if (!isValid) {
@@ -138,11 +138,11 @@ class Auth extends Component<Props, State> {
       })
       .then((data: ILogin) => {
         console.log(data);
-        const user = { ...data.user, sessionToken: data.sessionToken };
+        const session = { ...data.user, sessionToken: data.sessionToken };
 
         this.setState({ loading: false });
-        localStorage.setItem("user-session", JSON.stringify(user));
-        this.props.setAppState({ user });
+        localStorage.setItem("user-session", JSON.stringify(session));
+        this.props.setAppState({ session });
         this.props.navigate("/home");
       })
       .catch((error) => {
