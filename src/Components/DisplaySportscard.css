@@ -36,3 +36,13 @@ color: rgb(68, 37, 129);
 tr:nth-child(odd) {background-color: rgb(28, 15, 63);
 color: rgb(198, 198, 211)}
 
+button {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    border-radius: 15px;
+    background-color: #000;
+    color: #fff;
+    padding: 7px;
+}
+
