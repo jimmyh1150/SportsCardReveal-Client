@@ -12,6 +12,7 @@ class DisplaySportscard extends Component<IWithAppState> {
     this.loadMyCards();
   }
   loadMyCards = () => {
+    console.log(APIURL);
     const url = `${APIURL}/sportscard/mine`;
     fetch(url, {
       headers: new Headers({
