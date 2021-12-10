@@ -54,7 +54,7 @@ export default class CreateComment extends React.Component<Props, State> {
       .then((data) => data.json())
       .then((data) => {
         console.log(data);
-        this.props.refetch;
+        this.props.refetch();
       })
       .catch((error) => console.log("comment Error:", error));
   };
