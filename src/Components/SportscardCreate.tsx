@@ -16,7 +16,8 @@ import {
   withAppState,
   withNavigation,
 } from "../AppContext";
-import { API_SERVER } from "../constants";
+//import { API_SERVER } from "../constants";
+import APIURL from "../helpers/environment";
 
 type State = {
   playerFirstName: string;
@@ -49,7 +50,7 @@ class SportscardCreate extends Component<Props, State> {
 
   createSportscard = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    fetch(`${API_SERVER}/Sportscard/create`, {
+    fetch(`${APIURL}/Sportscard/create`, {
       method: "POST",
 
       body: JSON.stringify({

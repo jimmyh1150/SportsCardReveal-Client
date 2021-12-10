@@ -16,7 +16,8 @@ import {
   withAppState,
   withNavigation,
 } from "../AppContext";
-import { API_SERVER } from "../constants";
+//import { API_SERVER } from "../constants";\
+import APIURL from "../helpers/environment";
 
 interface Props extends IWithAppState, IWithNavigation {
   refetch: () => void;
@@ -31,7 +32,7 @@ class SportscardUpdate extends Component<Props, ISportsCard> {
   updateSportscard = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     console.log(this.props);
-    fetch(`${API_SERVER}/Sportscard/update/${this.props.sportsCard.id}`, {
+    fetch(`${APIURL}/Sportscard/update/${this.props.sportsCard.id}`, {
       method: "PUT",
 
       body: JSON.stringify({

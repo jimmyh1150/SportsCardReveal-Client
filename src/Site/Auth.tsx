@@ -20,6 +20,7 @@ import {
   withNavigation,
 } from "../AppContext";
 import { API_SERVER, UserRoles } from "../constants";
+import APIURL from "../helpers/environment";
 
 type State = {
   isLogin: boolean;
@@ -123,7 +124,7 @@ class Auth extends Component<Props, State> {
           },
         };
 
-    const url = `${API_SERVER}/user/${isLogin ? "login" : "register"}`;
+    const url = `${APIURL}/user/${isLogin ? "login" : "register"}`;
 
     this.setState({ loading: true });
     fetch(url, {

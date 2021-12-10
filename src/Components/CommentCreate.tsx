@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { API_SERVER } from "../constants";
+//import { API_SERVER } from "../constants";
 import {
   Form,
   FormGroup,
@@ -10,6 +10,7 @@ import {
   ModalHeader,
   ModalBody,
 } from "reactstrap";
+import APIURL from "../helpers/environment";
 
 type State = {
   content: string;
@@ -38,7 +39,7 @@ export default class CreateComment extends React.Component<Props, State> {
     e.preventDefault();
     console.log(this.props);
 
-    fetch(`${API_SERVER}/comments/comment/${this.props.sportscardId}`, {
+    fetch(`${APIURL}/comments/comment/${this.props.sportscardId}`, {
       method: "POST",
       body: JSON.stringify({
         comment: {
