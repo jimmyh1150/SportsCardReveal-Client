@@ -1,6 +1,6 @@
-export const API_SERVER = 'http://localhost:4000'
+export const API_SERVER = "http://localhost:4000";
 
 export enum UserRoles {
-  Admin = 'Admin',
-  User = 'User'
+  Admin = "Admin",
+  User = "User",
 }
