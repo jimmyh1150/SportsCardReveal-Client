@@ -4,6 +4,7 @@ import { API_SERVER } from "../constants";
 import { ISportsCard, IWithAppState, withAppState } from "../AppContext";
 import SportscardUpdate from "./SportscardUpdate";
 import CommentCreate from "./CommentCreate";
+import "./DisplaySportscard.css";
 
 class DisplaySportscard extends Component<IWithAppState> {
   componentDidMount() {
@@ -26,33 +27,37 @@ class DisplaySportscard extends Component<IWithAppState> {
   };
   render() {
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Team City</th>
-            <th>Team Name</th>
-            <th>Sport</th>
-            <th>Card Brand</th>
-            <th>Year</th>
-            <th>Card #</th>
-            <th>Description</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.props.appState.sportsCards.map((card) => (
-            <SportsCardRow
-              key={card.id}
-              sessionToken={this.props.appState.session.sessionToken}
-              refetch={this.loadMyCards}
-              sportsCard={card}
-            />
-          ))}
-        </tbody>
-      </table>
+      <div>
+        <div className="title">
+          <h1>My Cards</h1>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Team City</th>
+              <th>Team Name</th>
+              <th>Sport</th>
+              <th>Card Brand</th>
+              <th>Year</th>
+              <th>Card #</th>
+              <th>Description</th>
+              <th>Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.appState.sportsCards.map((card) => (
+              <SportsCardRow
+                key={card.id}
+                sessionToken={this.props.appState.session.sessionToken}
+                refetch={this.loadMyCards}
+                sportsCard={card}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
     );
   }
 }
@@ -106,7 +111,6 @@ class SportsCardRow extends Component<
             refetch={this.props.refetch}
           />
         )}
-
         {this.state.isCommenting && (
           <CommentCreate
             sportscardId={this.props.sportsCard.id}
@@ -127,8 +131,8 @@ class SportsCardRow extends Component<
           <td>{sportsCard.cardNumber}</td>
           <td>{sportsCard.cardDescription}</td>
           <td>
-            <button onClick={this.handleCommentCreate}>Comment</button>
             <button onClick={this.handleToggleEdit}>Edit</button>
+            <button onClick={this.handleCommentCreate}>Comment</button>
             <button onClick={this.handleDelete}>Delete</button>
           </td>
         </tr>

@@ -47,7 +47,7 @@ class SportscardUpdate extends Component<Props, ISportsCard> {
           throw response.json();
         }
         console.log(response.json());
-        this.props.refetch();
+        this.props.navigate("/home");
       })
       .catch((err) => console.log(err));
   };

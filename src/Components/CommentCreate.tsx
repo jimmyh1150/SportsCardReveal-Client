@@ -77,7 +77,7 @@ export default class CreateComment extends React.Component<Props, State> {
         <ModalBody style={{ backgroundColor: "lightgray" }}>
           <Form>
             <FormGroup>
-              <Label htmlFor="cardComment">Comment</Label>
+              <Label htmlFor="cardComment"></Label>
               <Input
                 placeholder="Enter Comment"
                 name="cardComment"

@@ -59,14 +59,6 @@ class App extends React.Component<{}, IFullAppState> {
                 </AuthContainer>
               }
             />
-            {/* <Route
-              path="/sportscard/comment"
-              element={
-                <AuthContainer>
-                  <CommentCreate />
-                </AuthContainer>
-              }
-            /> */}
 
             <Route
               path="/admin"

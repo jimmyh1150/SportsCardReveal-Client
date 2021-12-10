@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-//import { Table, Button } from "reactstrap";
+import { Table, Button } from "reactstrap";
 import { API_SERVER } from "../constants";
 import { IWithAppState, withAppState, User } from "../AppContext";
+import "./DisplayUsers.css";
 
 class DisplayUsers extends Component<IWithAppState> {
   componentDidMount() {
@@ -24,26 +25,31 @@ class DisplayUsers extends Component<IWithAppState> {
   };
   render() {
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>Email</th>
-            <th>Username</th>
-            <th>Role</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.props.appState.users.map((user) => (
-            <UserRow
-              key={user.id}
-              sessionToken={this.props.appState.session.sessionToken}
-              refetch={this.loadUsers}
-              {...user}
-            />
-          ))}
-        </tbody>
-      </table>
+      <div className="admin">
+        <div className="admin-menu">
+          <h1>Users</h1>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Username</th>
+              <th>Role</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.appState.users.map((user) => (
+              <UserRow
+                key={user.id}
+                sessionToken={this.props.appState.session.sessionToken}
+                refetch={this.loadUsers}
+                {...user}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
     );
   }
 }
@@ -53,7 +59,7 @@ interface IUserRow {
 }
 class UserRow extends Component<User & IUserRow> {
   handleDelete = () => {
-    const url = `${API_SERVER}/user/delete${this.props.id}`;
+    const url = `${API_SERVER}/user/delete/${this.props.id}`;
     fetch(url, {
       method: "DELETE",
       headers: new Headers({
