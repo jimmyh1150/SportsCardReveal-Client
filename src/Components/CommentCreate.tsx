@@ -1,13 +1,15 @@
 import React, { Component } from "react";
+import APIURL from "../helpers/environment";
 
 type State = {
   content: string;
 };
 
 type Props = {
-  sessionToken: string;
-  postId: string;
-  fetchpost?: any;
+  sessionToken: string | undefined;
+  sportscardId: number;
+  refetch: () => void;
+  onClose: () => void;
 };
 
 export default class CreateComment extends Component<Props, State> {
@@ -25,12 +27,11 @@ export default class CreateComment extends Component<Props, State> {
   handleSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
 
-    fetch(`http://localhost:4000/comments/comment`, {
+    fetch(`${APIURL}/${this.props.sportscardId}`, {
       method: "POST",
       body: JSON.stringify({
         comment: {
           content: this.state.content,
-          sportscardId: this.props.postId,
         },
       }),
       headers: new Headers({
@@ -41,7 +42,7 @@ export default class CreateComment extends Component<Props, State> {
       .then((data) => data.json())
       .then((data) => {
         console.log(data);
-        this.props.fetchpost;
+        this.props.refetch;
       })
       .catch((error) => console.log("comment Error:", error));
   };

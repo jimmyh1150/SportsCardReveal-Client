@@ -1,18 +1,16 @@
 import React, { Component } from "react";
 //import { Table, Button } from "reactstrap";
-//import { API_SERVER } from "../constants";
-import APIURL from "../helpers/environment";
 import { ISportsCard, IWithAppState, withAppState } from "../AppContext";
 import SportscardUpdate from "./SportscardUpdate";
 import CommentCreate from "./CommentCreate";
 import "./DisplaySportscard.css";
+import APIURL from "../helpers/environment";
 
 class DisplaySportscard extends Component<IWithAppState> {
   componentDidMount() {
     this.loadMyCards();
   }
   loadMyCards = () => {
-    console.log(APIURL);
     const url = `${APIURL}/sportscard/mine`;
     fetch(url, {
       headers: new Headers({
