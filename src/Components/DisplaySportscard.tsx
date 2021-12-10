@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 //import { Table, Button } from "reactstrap";
-import { API_SERVER } from "../constants";
+//import { API_SERVER } from "../constants";
+import APIURL from "../helpers/environment";
 import { ISportsCard, IWithAppState, withAppState } from "../AppContext";
 import SportscardUpdate from "./SportscardUpdate";
 import CommentCreate from "./CommentCreate";
@@ -11,7 +12,8 @@ class DisplaySportscard extends Component<IWithAppState> {
     this.loadMyCards();
   }
   loadMyCards = () => {
-    const url = `${API_SERVER}/sportscard/mine`;
+    console.log(APIURL);
+    const url = `${APIURL}/sportscard/mine`;
     fetch(url, {
       headers: new Headers({
         "Content-Type": "application/json",
@@ -72,7 +74,7 @@ class SportsCardRow extends Component<
 > {
   state = { isEditing: false, isCommenting: false };
   handleDelete = () => {
-    const url = `${API_SERVER}/Sportscard/delete/${this.props.sportsCard.id}`;
+    const url = `${APIURL}/Sportscard/delete/${this.props.sportsCard.id}`;
     fetch(url, {
       method: "DELETE",
       headers: new Headers({

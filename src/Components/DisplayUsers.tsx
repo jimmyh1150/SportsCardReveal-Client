@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Table, Button } from "reactstrap";
-import { API_SERVER } from "../constants";
+//import { API_SERVER } from "../constants";
+import APIURL from "../helpers/environment";
 import { IWithAppState, withAppState, User } from "../AppContext";
 import "./DisplayUsers.css";
 
@@ -9,7 +10,7 @@ class DisplayUsers extends Component<IWithAppState> {
     this.loadUsers();
   }
   loadUsers = () => {
-    const url = `${API_SERVER}/user/allUsers`;
+    const url = `${APIURL}/user/allUsers`;
     fetch(url, {
       headers: new Headers({
         "Content-Type": "application/json",
@@ -59,7 +60,7 @@ interface IUserRow {
 }
 class UserRow extends Component<User & IUserRow> {
   handleDelete = () => {
-    const url = `${API_SERVER}/user/delete/${this.props.id}`;
+    const url = `${APIURL}/user/delete/${this.props.id}`;
     fetch(url, {
       method: "DELETE",
       headers: new Headers({
