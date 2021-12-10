@@ -68,7 +68,7 @@ class App extends React.Component<{}, IFullAppState> {
                 </AuthContainer>
               }
             />
-            {/* <Route path="*" element={<FourOhFour />} /> */}
+            <Route path="*" element={<Home />} />
           </Routes>
         </AppState.Provider>
       </BrowserRouter>
