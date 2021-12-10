@@ -19,7 +19,8 @@ import {
   withAppState,
   withNavigation,
 } from "../AppContext";
-import { API_SERVER, UserRoles } from "../constants";
+import { UserRoles } from "../constants";
+import APIURL from "../helpers/environment";
 
 type State = {
   isLogin: boolean;
@@ -99,7 +100,7 @@ class Auth extends Component<Props, State> {
     return { isValid, message };
   };
 
-  handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { isValid, message } = this.validate();
     if (!isValid) {
@@ -123,7 +124,7 @@ class Auth extends Component<Props, State> {
           },
         };
 
-    const url = `${API_SERVER}/user/${isLogin ? "login" : "register"}`;
+    const url = `${APIURL}/user/${isLogin ? "login" : "register"}`;
 
     this.setState({ loading: true });
     fetch(url, {
@@ -138,11 +139,11 @@ class Auth extends Component<Props, State> {
       })
       .then((data: ILogin) => {
         console.log(data);
-        const user = { ...data.user, sessionToken: data.sessionToken };
+        const session = { ...data.user, sessionToken: data.sessionToken };
 
         this.setState({ loading: false });
-        localStorage.setItem("user-session", JSON.stringify(user));
-        this.props.setAppState({ user });
+        localStorage.setItem("user-session", JSON.stringify(session));
+        this.props.setAppState({ session });
         this.props.navigate("/home");
       })
       .catch((error) => {
