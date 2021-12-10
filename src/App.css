@@ -4,9 +4,14 @@
 }
 #app-header {
   background-color: black;
+  font-size: 12px;
 }
 #app-content {
-  background-color: gray;
+  background-color: rgb(0, 0, 0);
+  color: #fff;
+  
+  justify-content: center;
+ 
 }
 #login-page {
   display: grid;

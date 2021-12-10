@@ -20,6 +20,12 @@ export interface ISportsCard {
   cardDescription: string;
 }
 
+export interface ISportsCardComment {
+  id: number;
+  content: string;
+  createdAt: string;
+}
+
 export interface User {
   id: number;
   email: string;
@@ -28,12 +34,16 @@ export interface User {
   role: string;
   createdAt: string;
   updatedAt: string;
+}
+interface ISession extends User {
   sessionToken: string;
 }
 
 export interface IAppState {
-  user: Partial<User>;
+  session: Partial<ISession>;
+  users: User[];
   sportsCards: ISportsCard[];
+  //sportCardComments: ISportsCardComment[];
 }
 export interface IFullAppState extends IAppState {
   setAppState: (newValues: Partial<IAppState>) => null;
@@ -53,6 +63,17 @@ export const rehydrateSession = () => {
   }
 };
 
+export const addComments = (
+  currentComments: ISportsCardComment[],
+  newComments: ISportsCardComment[] | ISportsCardComment
+) => {
+  const addedComments: ISportsCardComment[] = [];
+  return addedComments.concat(
+    currentComments,
+    Array.isArray(newComments) ? newComments : [newComments]
+  );
+};
+
 export const addSportsCards = (
   currentCards: ISportsCard[],
   newCards: ISportsCard[] | ISportsCard
@@ -65,8 +86,10 @@ export const addSportsCards = (
 };
 
 export const AppState = React.createContext<IFullAppState>({
-  user: {},
+  session: {},
+  users: [],
   sportsCards: [],
+  //sportCardComments: [],
   setAppState: () => null,
 });
 

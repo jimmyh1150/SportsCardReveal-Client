@@ -10,7 +10,7 @@ class AuthContainer extends React.Component<
 > {
   needsRedirect = () => {
     return (
-      !this.props.appState?.user?.email &&
+      !this.props.appState?.session?.email &&
       !window.location.pathname.includes("login")
     );
   };
@@ -21,7 +21,7 @@ class AuthContainer extends React.Component<
     }
     if (
       this.props.requiredRole &&
-      this.props.appState?.user?.role !== this.props.requiredRole
+      this.props.appState?.session?.role !== this.props.requiredRole
     ) {
       console.log("auth-container: invalid role, redirect home");
       return <RedirectHandler />;
