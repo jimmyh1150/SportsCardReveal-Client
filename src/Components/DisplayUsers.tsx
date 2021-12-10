@@ -36,7 +36,7 @@ class DisplayUsers extends Component<IWithAppState> {
               <th>Email</th>
               <th>Username</th>
               <th>Role</th>
-              <th></th>
+              <th>Delete User ?</th>
             </tr>
           </thead>
           <tbody>
@@ -85,7 +85,7 @@ class UserRow extends Component<User & IUserRow> {
         <td>{this.props.username}</td>
         <td>{this.props.role}</td>
         <td>
-          <button onClick={this.handleDelete}>Delete</button>
+          <button onClick={this.handleDelete}>x</button>
         </td>
       </tr>
     );

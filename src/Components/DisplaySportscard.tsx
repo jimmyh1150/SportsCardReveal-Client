@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 //import { Table, Button } from "reactstrap";
-import { ISportsCard, IWithAppState, withAppState } from "../AppContext";
+import {
+  ISportsCard,
+  IWithAppState,
+  withAppState,
+  addSportsCards,
+} from "../AppContext";
 import SportscardUpdate from "./SportscardUpdate";
 import CommentCreate from "./CommentCreate";
 import "./DisplaySportscard.css";
