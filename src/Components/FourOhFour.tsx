@@ -6,7 +6,7 @@ export default class FourOhFour extends React.Component {
     return (
       <div>
         <h1>404</h1>
-        <p>Oops you found a broken page</p>
+        <p>Oops you found a broken page....try again</p>
         <Link to="home">Go back to home</Link>
       </div>
     );
