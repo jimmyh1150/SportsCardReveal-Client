@@ -19,7 +19,7 @@ import {
   withAppState,
   withNavigation,
 } from "../AppContext";
-import { API_SERVER, UserRoles } from "../constants";
+import { UserRoles } from "../constants";
 import APIURL from "../helpers/environment";
 
 type State = {
