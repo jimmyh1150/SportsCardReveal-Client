@@ -32,7 +32,7 @@ class DisplaySportscard extends Component<IWithAppState> {
   };
   render() {
     return (
-      <div>
+      <div className="table-scroll">
         <div className="title">
           <h1>My Cards</h1>
         </div>
