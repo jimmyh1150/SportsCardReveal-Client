@@ -46,9 +46,9 @@ button {
     padding: 7px;
 }
 
-btn-secondary{
+a.btn.btn-secondary{
     color: #fff;
-background-color: #442581;
-font-weight: bold;
+    background-color: #442581;
+    font-weight: bold;
 }
 
