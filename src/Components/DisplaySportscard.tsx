@@ -32,11 +32,11 @@ class DisplaySportscard extends Component<IWithAppState> {
   };
   render() {
     return (
-      <div className="table-scroll">
+      <div>
         <div className="title">
           <h1>My Cards</h1>
         </div>
-        <table>
+        <table className="fixed-header">
           <thead>
             <tr>
               <th>First Name</th>

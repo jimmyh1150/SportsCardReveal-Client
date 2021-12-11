@@ -8,10 +8,28 @@
     color: rgb(68, 37, 129);
    }
 
-.table-scroll {
+/* .table-scroll {
     height: 100px;
     overflow: auto;
+} */
+
+.fixed-header {
+    width: 800px;
+    table-layout: fixed;
+    border-collapse: collapse;      
 }
+
+.fixed-header tbody {
+    display: block;
+    width: 100%;
+    overflow: auto;
+    height: 500px;
+}
+
+.fixed-header thead tr {
+    display: block;
+}
+
 
 table {
     height: 100vh;
