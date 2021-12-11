@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import "font-awesome/css/font-awesome.min.css";
 import {
   DropdownToggle,
   DropdownMenu,
@@ -16,7 +17,7 @@ class Nav extends React.Component<IWithAppState> {
   render() {
     const { session } = this.props.appState;
     return (
-      <nav className="header-navbar">
+      <nav className="header-navbar fa fa-bars">
         <Link className="navbar-brand" to={"/home"}>
           Sportscard Reveal
         </Link>
