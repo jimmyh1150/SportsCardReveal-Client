@@ -17,7 +17,7 @@ class Nav extends React.Component<IWithAppState> {
   render() {
     const { session } = this.props.appState;
     return (
-      <nav className="header-navbar fa fa-bars">
+      <nav className="header-navbar">
         <Link className="navbar-brand" to={"/home"}>
           Sportscard Reveal
         </Link>
