@@ -13,8 +13,8 @@
     overflow: auto;
 } */
 
-.fixed-header {
-    width: 800px;
+/* .fixed-header {
+    width: 100%;
     table-layout: fixed;
     border-collapse: collapse;      
 }
@@ -28,7 +28,7 @@
 
 .fixed-header thead tr {
     display: block;
-}
+} */
 
 
 table {
