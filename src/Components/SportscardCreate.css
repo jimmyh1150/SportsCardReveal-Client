@@ -1,4 +1,4 @@
-ModalHeader {
+.modal-header {
     background-color: #000;
     justify-content: center;
 }
@@ -8,7 +8,7 @@ h3 {
     font-weight: bold;
 }
 
-ModalBody {
+.modal-body {
     background-color: #442581;
     color: #fff;
 }
