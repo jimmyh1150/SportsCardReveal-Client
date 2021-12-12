@@ -1,0 +1,27 @@
+ModalHeader {
+    background-color: #000;
+    justify-content: center;
+}
+
+h3 {
+    color: #442581;
+    font-weight: bold;
+}
+
+ModalBody {
+    background-color: #442581;
+    color: #fff;
+}
+
+label.form-label {
+    color: #fff;
+}
+
+input.form-control {
+    text-transform: capitalize;
+}
+
+button.btn.btn-secondary {
+    background-color: #fff;
+    color: #000;
+}
