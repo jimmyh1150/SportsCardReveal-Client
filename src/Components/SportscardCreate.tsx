@@ -16,6 +16,7 @@ import {
   withAppState,
   withNavigation,
 } from "../AppContext";
+import "./SportscardCreate.css";
 //import { API_SERVER } from "../constants";
 import APIURL from "../helpers/environment";
 
@@ -94,12 +95,10 @@ class SportscardCreate extends Component<Props, State> {
         }}
         isOpen={true}
       >
-        <ModalHeader
-          style={{ backgroundColor: "lightgray", justifyContent: "center" }}
-        >
+        <ModalHeader>
           <h3>Add Sports Card</h3>
         </ModalHeader>
-        <ModalBody style={{ backgroundColor: "lightgray" }}>
+        <ModalBody>
           <Form>
             <FormGroup>
               <Label htmlFor="playerFirstName">First Name</Label>
