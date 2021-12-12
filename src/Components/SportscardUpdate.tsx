@@ -16,6 +16,7 @@ import {
   withAppState,
   withNavigation,
 } from "../AppContext";
+import "./SportscardUpdate.css";
 //import { API_SERVER } from "../constants";\
 import APIURL from "../helpers/environment";
 
