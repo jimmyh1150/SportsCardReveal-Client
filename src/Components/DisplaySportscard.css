@@ -1,12 +1,25 @@
-.title{
+a.navbar-brand {
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    font-size: 3.25rem;
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+a.navbar-brand:hover {
+    color: #442581;
+}
+
+.title {
     display: flex;
     justify-content: center;
     align-items: center;
-   }
+}
 
 .title h1 {
     color: rgb(68, 37, 129);
-   }
+}
 
 /* .table-scroll {
     height: 100px;
@@ -39,25 +52,29 @@ table {
 th {
     background-color: rgb(219, 206, 206);
     color: rgb(0, 0, 0);
-   
+
 }
 
 table, th, td {
     border: 1px solid rgb(255, 255, 255);
     text-align: center;
     font-weight: bold;
-    
+
 }
 
 th, td {
     padding: 5px;
 }
 
-tr:nth-child(even) {background-color: rgb(12, 12, 12);
-color: rgb(68, 37, 129);
+tr:nth-child(even) {
+    background-color: rgb(12, 12, 12);
+    color: rgb(68, 37, 129);
 }
-tr:nth-child(odd) {background-color: rgb(28, 15, 63);
-color: rgb(198, 198, 211)}
+
+tr:nth-child(odd) {
+    background-color: rgb(28, 15, 63);
+    color: rgb(198, 198, 211)
+}
 
 button {
     margin: 0;
@@ -69,9 +86,13 @@ button {
     padding: 7px;
 }
 
-a.btn.btn-secondary{
+button.btn.btn-secondary {
+    color: #fff;
+    background-color: #442581;
+}
+
+a.btn.btn-secondary {
     color: #fff;
     background-color: #442581;
     font-weight: bold;
 }
-
