@@ -17,7 +17,6 @@ import {
   withNavigation,
 } from "../AppContext";
 import "./SportscardUpdate.css";
-//import { API_SERVER } from "../constants";\
 import APIURL from "../helpers/environment";
 
 interface Props extends IWithAppState, IWithNavigation {
@@ -48,7 +47,6 @@ class SportscardUpdate extends Component<Props, ISportsCard> {
         if (!response.ok) {
           throw response.json();
         }
-        console.log(response.json());
         this.props.navigate("/home");
       })
       .catch((err) => console.log(err));

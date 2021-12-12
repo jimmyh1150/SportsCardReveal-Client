@@ -17,7 +17,6 @@ import {
   withNavigation,
 } from "../AppContext";
 import "./SportscardCreate.css";
-//import { API_SERVER } from "../constants";
 import APIURL from "../helpers/environment";
 
 type State = {
